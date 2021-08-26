@@ -73,7 +73,7 @@
     <div class="mb-3">
       <label for="lbl_puesto" class="form-label"><b>Puesto</b></label>
       <select class="form-select" name="drop_puesto" id="drop_puesto">
-        <option value=0>--- Puesto ---</option>
+        <option value=0>--- Elija un Puesto ---</option>
        <?php 
             //CONEXION Y SELECT
             include("datos_conexion.php");
@@ -112,80 +112,13 @@
 
 </form>
       </div>
-      <!-- <div class="modal-footer">
-       
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div> -->
+     
     </div>
   </div>
 </div>
     <div class="container">
-        <!-- <form class="d-flex" action="" method="post">
-
-            <div class="col">
-                <div class="mb-3">
-                    <label for="lbl_codigo" class="form-label"><b>Código</b></label>
-                    <input type="text" name="txt_codigo" id="txt_codigo" class="form-control" placeholder="Código: E001" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="lbl_nombres" class="form-label"><b>Nombres</b></label>
-                    <input type="text" name="txt_nombres" id="txt_nombres" class="form-control" placeholder="Nombres: Nombre1 nombre2" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="lbl_apellidos" class="form-label"><b>Apellidos</b></label>
-                    <input type="text" name="txt_apellidos" id="txt_apellidos" class="form-control" placeholder="Apellidos: Apellido1 Apellido2" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="lbl_direccion" class="form-label"><b>Dirección</b></label>
-                    <input type="text" name="txt_direccion" id="txt_direccion" class="form-control" placeholder="Dirección: Ciudad..." required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="lbl_telefono" class="form-label"><b>Teléfono</b></label>
-                    <input type="number" name="txt_telefono" id="txt_telefono" class="form-control" placeholder="Teléfono: 45656787" required>
-                </div>
-
-                <div class="mb-3">
-                  <label for="lbl_puesto" class="form-label"><b>Puesto</b></label>
-                  <select class="form-select" name="drop_puesto" id="drop_puesto">
-                    <option value=0>--- Puesto ---</option>
-                   <?php 
-                        //CONEXION Y SELECT
-                        // include("datos_conexion.php");
-                        // $db_conexion = mysqli_connect($db_host, $db_usr, $db_pass,$db_name);
-
-                        // $db_conexion->real_query("SELECT id_puesto as id, puesto FROM puestos");
-                        // $resultado=$db_conexion->use_result();
-
-
-                        // while ($fila = $resultado->fetch_assoc()) {
-                        //    echo "<option value=". $fila['id'].">".$fila['puesto']."</option>";
-                        // }
-
-                        // $db_conexion->close();
-                   ?>
-                 
-                  </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="lbl_fn" class="form-label"><b>Fecha de Nacimiento</b></label>
-                    <input type="date" name="txt_fn" id="txt_fn" class="form-control" placeholder="dd-mm-aaaa" required>
-                </div>
-
-                <div class="mb-3">
-                    <input type="submit" name="btn_agregar" id="btn_agregar" class="btn btn-primary" value="Agregar">
-                </div>
-               
-
-            </div>
-          
-        </form> -->
                         
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Nuevo</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="limpiar()">Nuevo</button>
 
         <table class="table table-striped table-inverse table-responsive table-dark">
             <thead class="thead-inverse|thead-default">
@@ -233,6 +166,24 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
+
+        function limpiar(){
+            $("#txt_id").val(0);
+
+            $("#txt_codigo").val('');
+
+            $("#txt_nombres").val('');
+
+            $("#txt_apellidos").val('');
+
+            $("#txt_direccion").val('');
+
+            $("#txt_telefono").val('');
+
+            $("#txt_fn").val('');
+
+            $("#drop_puesto").val(0);
+        }
         $('#tbl_empleados').on('click', 'tr td',function(evt){
             var target,id,id_p,codigo,nombres,apellidos,direccion,telefono,nacimiento;
             target = $(event.target);
