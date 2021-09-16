@@ -13,6 +13,9 @@
     <!-- Bootstrap CSS v5
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     -->
+    <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
+
 <style>
     body {
         background: #02AAB0;  
@@ -120,7 +123,7 @@
                         
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="limpiar()">Nuevo</button>
 
-        <table class="table table-striped table-inverse table-responsive table-dark">
+        <table class="table table-striped table-inverse table-responsive table-dark" id="tabla">
             <thead class="thead-inverse|thead-default">
                 <tr>
                     <th>Código</th>
@@ -137,7 +140,7 @@
                         include("datos_conexion.php");
                         $db_conexion = mysqli_connect($db_host, $db_usr, $db_pass,$db_name);
 
-                         $db_conexion->real_query("select e.id_empleado,e.codigo,e.nombres,e.apellidos,e.direccion,e.telefono,e.fecha_nacimiento,e.id_puesto, p.puesto from db_empresa_2021.empleados as e inner join db_empresa_2021.puestos as p on e.id_puesto = p.id_puesto ;");
+                         $db_conexion->real_query("select e.id_empleado,e.codigo,e.nombres,e.apellidos,e.direccion,e.telefono,e.fecha_nacimiento,e.id_puesto, p.puesto from db_empresa_2021.empleados as e inner join db_empresa_2021.puestos as p on e.id_puesto = p.id_puesto order by e.id_empleado;");
                          $resultado=$db_conexion->use_result();
  
                          while ($fila = $resultado->fetch_assoc()) {
@@ -213,6 +216,11 @@
 
             $("#exampleModal").modal('show');
            
+        });
+
+        var tabla=document.querySelector("#tabla");
+        var dataTable = new DataTable(tabla,{
+            perPage:3
         });
     </script>
 
